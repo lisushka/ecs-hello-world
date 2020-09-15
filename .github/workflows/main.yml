@@ -51,5 +51,5 @@ jobs:
         with:
           name: fargate-stack
           template: cf/deploy-fargate.yml
-          parameter-overrides: "ImageUrl=${{ secrets.DOCKER_HUB_USERNAME }}/hello-world:${{ env.GITHUB_RUN_ID }}"
+          parameter-overrides: "ImageUrl=${{ secrets.DOCKER_HUB_USERNAME }}/hello-world:${{ github.run_id }}"
           no-fail-on-empty-changeset: 1
