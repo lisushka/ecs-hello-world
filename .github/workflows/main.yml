@@ -19,8 +19,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-          repository: ${{ secrets.DOCKER_HUB_USERNAME }}/hello-world
-          tag_with_ref: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/hello-world:$GITHUB_RUN_ID
 
   deploy:
     runs-on: ubuntu-latest
