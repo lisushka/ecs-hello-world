@@ -24,7 +24,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    depends-on:
+    needs: [build-docker]
     
     steps:
       - name: Check out repository
