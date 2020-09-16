@@ -35,7 +35,7 @@ Parameters:
     Description: The minimum number of copies of the service task to run
   MaximumCount:
     Type: Number
-    Default: 10
+    Default: 15
     Description: The maximum number of copies of the service task to run
   CPUScalingRuleTarget:
     Type: Number
