@@ -18,25 +18,19 @@
 
 1. In your Github repository, go to `Settings` > `Secrets`.  Using the `New secret` button, create the following four secrets:
 
-  ```
-  Name: AWS_ACCESS_KEY_ID
-  Value: The ID portion of your AWS access key (all caps)
-  ```
-  
-  ```
-  Name: AWS_SECRET_ACCESS_KEY
-  Value: The Secret Key portion of your AWS access key
-  ```
+    ```
+    Name: AWS_ACCESS_KEY_ID
+    Value: The ID portion of your AWS access key (all caps)
 
-  ```
-  Name: DOCKER_HUB_USERNAME
-  Value: Your Docker Hub username
-  ```
-  
-  ```
-  Name: DOCKER_HUB_PAT
-  Value: The Docker Hub access token that you created earlier
-  ```
+    Name: AWS_SECRET_ACCESS_KEY
+    Value: The Secret Key portion of your AWS access key
+
+    Name: DOCKER_HUB_USERNAME
+    Value: Your Docker Hub username
+
+    Name: DOCKER_HUB_PAT
+    Value: The Docker Hub access token that you created earlier
+    ```
 
 1. Run the pipeline to see the build results.  Github is currently in the process of adding support for manually running pipelines - until this is added, you may need to push a commit with a newline added to a file to get the project to build.  The project will be deployed into the `ap-southeast-2` region of your AWS account.
 
