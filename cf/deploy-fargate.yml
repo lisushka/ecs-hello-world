@@ -28,7 +28,19 @@ Parameters:
   DesiredCount:
     Type: Number
     Default: 2
-    Description: How many copies of the service task to run
+    Description: The number of copies of the service task to run as a baseline
+  MinimumCount:
+    Type: Number
+    Default: 2
+    Description: The minimum number of copies of the service task to run
+  MaximumCount:
+    Type: Number
+    Default: 10
+    Description: The maximum number of copies of the service task to run
+  CPUScalingRuleTarget:
+    Type: Number
+    Default: 70.0
+    Description: The CPU usage limit at which the service will scale up
 
 Resources:
   # VPC used by Fargate cluster
@@ -208,8 +220,10 @@ Resources:
   ScalableTarget:
     Type: AWS::ApplicationAutoScaling::ScalableTarget
     Properties:
-      MinCapacity: 2
-      MaxCapacity: 10
+      MinCapacity:
+        Ref: MinimumCount
+      MaxCapacity:
+        Ref: MaximumCount
       RoleARN: 
         Fn::Sub: 'arn:aws:iam::${AWS::AccountId}:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService'
       ServiceNamespace: ecs
@@ -224,7 +238,8 @@ Resources:
       ScalingTargetId:
         Ref: ScalableTarget
       TargetTrackingScalingPolicyConfiguration:
-        TargetValue: 70.0
+        TargetValue:
+          Ref: CPUScalingRuleTarget
         ScaleInCooldown: 60
         ScaleOutCooldown: 60
         PredefinedMetricSpecification:
